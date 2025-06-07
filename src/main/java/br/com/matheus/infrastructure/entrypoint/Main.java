@@ -1,57 +1,58 @@
 package br.com.matheus.infrastructure.entrypoint;
 
-
-import br.com.matheus.application.dto.CreateProductDTO;
+import br.com.matheus.application.dto.*;
 import br.com.matheus.application.usecase.CreateProductUseCase;
-import br.com.matheus.domain.entity.Product;
-import br.com.matheus.domain.entity.User;
+import br.com.matheus.application.usecase.CreateUserUseCase;
+import br.com.matheus.application.usecase.PerformSaleUseCase;
 import br.com.matheus.domain.repository.ProductRepository;
+import br.com.matheus.domain.repository.SaleRepository;
 import br.com.matheus.domain.repository.UserRepository;
-import br.com.matheus.infrastructure.configuration.HibernateUtil;
 import br.com.matheus.infrastructure.repository.hibernate.ProductRepositoryHibernateImpl;
+import br.com.matheus.infrastructure.repository.hibernate.SaleRepositoryHibernateImpl;
 import br.com.matheus.infrastructure.repository.hibernate.UserRepositoryHibernateImpl;
 
 import java.math.BigDecimal;
-import java.util.Optional;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        UserRepository ur = new UserRepositoryHibernateImpl();
+        System.out.println("--- inicio da aplicação ---");
 
-        User newUser = new User("fofo", "123", "fofo@gmail.com", "senhaForte123");
-
-        ur.save(newUser);
-
-        Optional<User> foundUser = ur.findByCpf("123");
-
-        foundUser.ifPresent(user -> {
-            System.out.println("Usuario encontrado: " + user.toString());
-        });
-
-        System.out.println("\n--- INICIANDO TESTE DO CASO DE USO DE PRODUTO ---");
-
-
+        UserRepository userRepository = new UserRepositoryHibernateImpl();
         ProductRepository productRepository = new ProductRepositoryHibernateImpl();
+        SaleRepository saleRepository = new SaleRepositoryHibernateImpl();
+
+        CreateUserUseCase createUserUseCase = new CreateUserUseCase(userRepository);
         CreateProductUseCase createProductUseCase = new CreateProductUseCase(productRepository);
+        PerformSaleUseCase performSaleUseCase = new PerformSaleUseCase(userRepository, productRepository, saleRepository);
+
+        System.out.println("\n1. cadastrar um usuario e alguns produtos para exemplo");
+        createUserUseCase.execute(new CreateUserDTO("Matheus Costa", "777.777.777-77", "matheus@email.com", "12345"));
+        createProductUseCase.execute(new CreateProductDTO("Garrafa Growth","Somos todos atletas", new BigDecimal("20.00"), 50));
+        createProductUseCase.execute(new CreateProductDTO("Celular Xiaomi note 11", "Celular muito bom, fera demaiss", new BigDecimal("1599.99"), 20));
 
 
-        CreateProductDTO productData = new CreateProductDTO("Monitor Ultrawide 34'", "pc foda", new BigDecimal("3250.00"), 30);
+        System.out.println("\n2. Simulando uma compra");
+        PerformSaleRequestDTO saleRequest = new PerformSaleRequestDTO(
+                1L,
+                List.of(
+                        new SaleItemRequestDTO(1L, 2),
+                        new SaleItemRequestDTO(2L, 1)
+                )
+        );
 
-        System.out.println("\n3. Executando caso de uso para criar um novo produto...");
-        try {
-            Product createdProduct = createProductUseCase.execute(productData);
-            System.out.println("SUCESSO! Produto criado: " + createdProduct);
-        } catch (IllegalStateException e) {
-            System.err.println("ERRO: " + e.getMessage());
-        }
+        SaleResponseDTO saleResponse = performSaleUseCase.execute(saleRequest);
+        System.out.println("\nSucesso na venda");
+        System.out.println("Id da Venda: " + saleResponse.saleId());
+        System.out.println("Cliente: " + saleResponse.customerName());
+        System.out.println("Data: " + saleResponse.saleDate());
+        System.out.println("Valor total: R$ " + saleResponse.totalAmount());
+        System.out.println("Itens Comprados:");
+        saleResponse.items().forEach(item ->
+                System.out.println(String.format("  - %s | Qtd: %d | Preço Un.: R$ %.2f",
+                        item.productName(), item.quantity(), item.unitPrice()))
+        );
 
-
-        System.out.println("\n4. Tentando criar o mesmo produto novamente...");
-        try {
-            createProductUseCase.execute(productData);
-        } catch (IllegalStateException e) {
-            System.err.println("ERRO (ESPERADO): " + e.getMessage());
-        }
-
+        System.out.println("\nfim da aplicação");
     }
 }
