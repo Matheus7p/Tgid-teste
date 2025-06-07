@@ -16,10 +16,10 @@ public class Sale {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
-    @Column(name = "sale_date", nullable = false)
+    @Column(name = "saleDate", nullable = false)
     private LocalDateTime dateSale;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -67,7 +67,7 @@ public class Sale {
 
     public BigDecimal getTotal() {
         return items.stream()
-                .map(item -> item.getUnit_price().multiply(new BigDecimal(item.getQuantity())))
+                .map(item -> item.getUnitPrice().multiply(new BigDecimal(item.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

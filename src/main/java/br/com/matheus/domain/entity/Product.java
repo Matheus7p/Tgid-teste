@@ -12,8 +12,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "product_name", nullable = false, length = 150)
-    private String product_name;
+    @Column(name = "name", nullable = false, length = 150)
+    private String name;
 
     @Column(name = "description", nullable = false, length = 500)
     private String description;
@@ -26,8 +26,8 @@ public class Product {
 
     public Product(){}
 
-    public Product(String product_name, String description, BigDecimal price, int stockQuantity){
-        this.product_name = product_name;
+    public Product(String name, String description, BigDecimal price, int stockQuantity){
+        this.name = name;
         this.description = description;
         this.price = price;
         this.stockQuantity = stockQuantity;
@@ -41,12 +41,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getName() {
+        return name;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProduct_name(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -77,7 +77,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "id=" + getId() +
-                ", _product_name='" + getProduct_name() + '\'' +
+                ", _product_name='" + getName() + '\'' +
                 ", _description='" + getDescription() + '\'' +
                 ", _price=" + getPrice() +
                 ", _stockQuantity=" + getDescription() +

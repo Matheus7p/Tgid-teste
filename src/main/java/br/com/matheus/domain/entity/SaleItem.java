@@ -13,18 +13,18 @@ public class SaleItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "sale_id", nullable = false)
+    @JoinColumn(name = "saleId", nullable = false)
     private Sale sale;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "productId", nullable = false)
     private Product product;
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "unit_price", nullable = false, precision = 10, scale = 2)
-    private BigDecimal unit_price;
+    @Column(name = "unitPrice", nullable = false, precision = 10, scale = 2)
+    private BigDecimal unitPrice;
 
     public SaleItem(){}
 
@@ -32,7 +32,7 @@ public class SaleItem {
         this.sale = sale;
         this.product = product;
         this.quantity = quantity;
-        this.unit_price = product.getPrice();
+        this.unitPrice = product.getPrice();
     }
 
     public Long getId() {
@@ -67,11 +67,11 @@ public class SaleItem {
         this.quantity = quantity;
     }
 
-    public BigDecimal getUnit_price() {
-        return unit_price;
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setUnit_price(BigDecimal unit_price) {
-        this.unit_price = unit_price;
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

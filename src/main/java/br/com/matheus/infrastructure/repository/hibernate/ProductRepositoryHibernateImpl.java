@@ -76,10 +76,10 @@ public class ProductRepositoryHibernateImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findByName(String product_name) {
+    public Optional<Product> findByName(String name) {
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
-           return session.createQuery("from Product product WHERE product.name =:product_name", Product.class)
-                   .setParameter("product_name", product_name)
+           return session.createQuery("from Product product WHERE product.name =:name", Product.class)
+                   .setParameter("name", name)
                    .uniqueResultOptional();
         }
     }
