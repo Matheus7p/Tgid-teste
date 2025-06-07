@@ -28,11 +28,11 @@ public class SaleItem {
 
     public SaleItem(){}
 
-    public SaleItem(Sale sale, Product product, int quantity, BigDecimal unit_price) {
+    public SaleItem(Sale sale, Product product, int quantity) {
         this.sale = sale;
         this.product = product;
         this.quantity = quantity;
-        this.unit_price = unit_price;
+        this.unit_price = product.getPrice();
     }
 
     public Long getId() {
