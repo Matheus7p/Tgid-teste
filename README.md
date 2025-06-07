@@ -4,5 +4,6 @@ Este repositório contém um projeto de backend em Java desenvolvido como teste 
 
 ## Modelo do Banco de Dados
 
-![DBModel](https://github.com/user-attachments/assets/2935acb2-925e-4d99-a84b-71541c620cbf)
+![DBModel](https://github.com/user-attachments/assets/b32066d0-433b-475b-a149-8844166bc2b8)
+
 
