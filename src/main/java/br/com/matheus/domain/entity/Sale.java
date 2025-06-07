@@ -13,48 +13,48 @@ public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long _id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User _user;
+    private User user;
 
     @Column(name = "sale_date", nullable = false)
-    private LocalDateTime _dateSale;
+    private LocalDateTime dateSale;
 
-    @OneToMany(mappedBy = "_sale", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SaleItem> items = new ArrayList<>();
 
 
     public Sale(){}
 
-    public Sale(User _user){
-        this._user = _user;
-        this._dateSale = LocalDateTime.now();
+    public Sale(User user){
+        this.user = user;
+        this.dateSale = LocalDateTime.now();
     }
 
-    public User get_user() {
-        return _user;
+    public User getUser() {
+        return user;
     }
 
-    public void set_user(User _user) {
-        this._user = _user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long get_id() {
-        return _id;
+    public Long getId() {
+        return id;
     }
 
-    public void set_id(Long _id) {
-        this._id = _id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public LocalDateTime get_dateSale() {
-        return _dateSale;
+    public LocalDateTime getDateSale() {
+        return dateSale;
     }
 
-    public void set_dateSale(LocalDateTime _dateSale) {
-        this._dateSale = _dateSale;
+    public void setDateSale(LocalDateTime dateSale) {
+        this.dateSale = dateSale;
     }
 
     public List<SaleItem> getItems() {
@@ -67,7 +67,7 @@ public class Sale {
 
     public BigDecimal getTotal() {
         return items.stream()
-                .map(item -> item.get_unit_price().multiply(new BigDecimal(item.get_quantity())))
+                .map(item -> item.getUnit_price().multiply(new BigDecimal(item.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

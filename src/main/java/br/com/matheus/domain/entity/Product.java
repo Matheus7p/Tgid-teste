@@ -10,77 +10,77 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long _id;
+    private Long id;
 
     @Column(name = "product_name", nullable = false, length = 150)
-    private String _product_name;
+    private String product_name;
 
     @Column(name = "description", nullable = false, length = 500)
-    private String _description;
+    private String description;
 
     @Column(name = "price", nullable = false, precision = 10, scale = 2)
-    private BigDecimal _price;
+    private BigDecimal price;
 
     @Column(name = "stock_quantity", nullable = false)
-    private int _stockQuantity;
+    private int stockQuantity;
 
     public Product(){}
 
-    public Product(String _product_name, String _description, BigDecimal _price, int _stockQuantity){
-        this._product_name = _product_name;
-        this._description = _description;
-        this._price = _price;
-        this._stockQuantity = _stockQuantity;
+    public Product(String product_name, String description, BigDecimal price, int stockQuantity){
+        this.product_name = product_name;
+        this.description = description;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
     }
 
     public Long getId() {
-        return _id;
+        return id;
     }
 
-    public void setId(Long _id) {
-        this._id = _id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String get_product_name() {
-        return _product_name;
+    public String getProduct_name() {
+        return product_name;
     }
 
-    public void set_product_name(String _product_name) {
-        this._product_name = _product_name;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
-    public String get_description() {
-        return _description;
+    public String getDescription() {
+        return description;
     }
 
-    public void set_description(String _description) {
-        this._description = _description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public BigDecimal get_price() {
-        return _price;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void set_price(BigDecimal _price) {
-        this._price = _price;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
-    public int get_stockQuantity() {
-        return _stockQuantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void set_stockQuantity(int _stockQuantity) {
-        this._stockQuantity = _stockQuantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + getId() +
-                ", _product_name='" + get_product_name() + '\'' +
-                ", _description='" + get_description() + '\'' +
-                ", _price=" + get_price() +
-                ", _stockQuantity=" + get_stockQuantity() +
+                ", _product_name='" + getProduct_name() + '\'' +
+                ", _description='" + getDescription() + '\'' +
+                ", _price=" + getPrice() +
+                ", _stockQuantity=" + getDescription() +
                 '}';
     }
 }

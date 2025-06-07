@@ -9,80 +9,80 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long _id;
+    private Long id;
 
     @Column(name = "cpf", nullable = false, length = 200)
-    private String _cpf;
+    private String cpf;
 
-    @Column(name = "name", nullable = false, unique = true, length = 14)
-    private String _name;
+    @Column(name = "name", nullable = false, length = 14)
+    private String name;
 
     @Column(name = "email", nullable = false, unique =true)
-    private String _email;
+    private String email;
 
     @Column(name = "password", nullable = false, length = 255)
-    private String _password;
+    private String password;
 
     public User(){}
 
-    public User(String _name, String _cpf, String _email, String _rawPassword){
-        this._name = _name;
-        this._cpf = _cpf;
-        this._email = _email;
-        this.set_password(_rawPassword);
+    public User(String name, String cpf, String email, String rawPassword){
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.setPassword(rawPassword);
     }
 
-    public boolean verifyPassword(String _rawPassword){
-        return BCrypt.verifyer().verify(_rawPassword.toCharArray(), this._password).verified;
+    public boolean verifyPassword(String rawPassword){
+        return BCrypt.verifyer().verify(rawPassword.toCharArray(), this.password).verified;
     }
 
     public Long getId() {
-        return _id;
+        return id;
     }
 
-    public void setId(Long _id) {
-        this._id = _id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String get_cpf() {
-        return _cpf;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void set_cpf(String _cpf) {
-        this._cpf = _cpf;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String get_name() {
-        return _name;
+    public String getName() {
+        return name;
     }
 
-    public void set_name(String _name) {
-        this._name = _name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String get_email() {
-        return _email;
+    public String getEmail() {
+        return email;
     }
 
-    public void set_email(String _email) {
-        this._email = _email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String get_password() {
-        return _password;
+    public String getPassword() {
+        return password;
     }
 
-    public void set_password(String _rawPassword) {
-        this._password = BCrypt.withDefaults().hashToString(12, _rawPassword.toCharArray());
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + getId() +
-                ", _name='" + get_name() + '\'' +
-                ", _email='" + get_email() + '\'' +
-                ", _cpf='" + get_cpf() + '\'' +
+                ", _name='" + getName() + '\'' +
+                ", _email='" + getEmail() + '\'' +
+                ", _cpf='" + getCpf() + '\'' +
                 '}';
     }
 

@@ -10,68 +10,68 @@ public class SaleItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long _id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "sale_id", nullable = false)
-    private Sale _sale;
+    private Sale sale;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    private Product _product;
+    private Product product;
 
     @Column(name = "quantity", nullable = false)
-    private int _quantity;
+    private int quantity;
 
     @Column(name = "unit_price", nullable = false, precision = 10, scale = 2)
-    private BigDecimal _unit_price;
+    private BigDecimal unit_price;
 
     public SaleItem(){}
 
-    public SaleItem(Sale _sale, Product _product, int _quantity, BigDecimal _unit_price) {
-        this._sale = _sale;
-        this._product = _product;
-        this._quantity = _quantity;
-        this._unit_price = _unit_price;
+    public SaleItem(Sale sale, Product product, int quantity, BigDecimal unit_price) {
+        this.sale = sale;
+        this.product = product;
+        this.quantity = quantity;
+        this.unit_price = unit_price;
     }
 
-    public Sale get_sale() {
-        return _sale;
+    public Long getId() {
+        return id;
     }
 
-    public void set_sale(Sale _sale) {
-        this._sale = _sale;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long get_id() {
-        return _id;
+    public Sale getSale() {
+        return sale;
     }
 
-    public void set_id(Long _id) {
-        this._id = _id;
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 
-    public Product get_product() {
-        return _product;
+    public Product getProduct() {
+        return product;
     }
 
-    public void set_product(Product _product) {
-        this._product = _product;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public int get_quantity() {
-        return _quantity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void set_quantity(int _quantity) {
-        this._quantity = _quantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public BigDecimal get_unit_price() {
-        return _unit_price;
+    public BigDecimal getUnit_price() {
+        return unit_price;
     }
 
-    public void set_unit_price(BigDecimal _unit_price) {
-        this._unit_price = _unit_price;
+    public void setUnit_price(BigDecimal unit_price) {
+        this.unit_price = unit_price;
     }
 }
