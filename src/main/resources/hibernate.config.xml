@@ -17,6 +17,7 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="br.com.matheus.domain.entity.User" />
+        <mapping class="br.com.matheus.domain.entity.Product" />
 
     </session-factory>
 </hibernate-configuration>
