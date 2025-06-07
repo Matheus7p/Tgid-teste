@@ -18,6 +18,8 @@
 
         <mapping class="br.com.matheus.domain.entity.User" />
         <mapping class="br.com.matheus.domain.entity.Product" />
+        <mapping class="br.com.matheus.domain.entity.Sale" />
+        <mapping class="br.com.matheus.domain.entity.SaleItem" />
 
     </session-factory>
 </hibernate-configuration>

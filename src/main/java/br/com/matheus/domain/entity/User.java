@@ -4,11 +4,12 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long _id;
 
     @Column(name = "cpf", nullable = false, length = 200)
     private String _cpf;
@@ -36,11 +37,11 @@ public class User {
     }
 
     public Long getId() {
-        return id;
+        return _id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long _id) {
+        this._id = _id;
     }
 
     public String get_cpf() {
@@ -78,10 +79,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", _name='" + _name + '\'' +
-                ", _email='" + _email + '\'' +
-                ", _cpf='" + _cpf + '\'' +
+                "id=" + getId() +
+                ", _name='" + get_name() + '\'' +
+                ", _email='" + get_email() + '\'' +
+                ", _cpf='" + get_cpf() + '\'' +
                 '}';
     }
 

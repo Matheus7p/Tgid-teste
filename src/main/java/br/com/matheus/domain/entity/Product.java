@@ -5,11 +5,12 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long _id;
 
     @Column(name = "product_name", nullable = false, length = 150)
     private String _product_name;
@@ -33,11 +34,11 @@ public class Product {
     }
 
     public Long getId() {
-        return id;
+        return _id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long _id) {
+        this._id = _id;
     }
 
     public String get_product_name() {
@@ -75,11 +76,11 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", _product_name='" + _product_name + '\'' +
-                ", _description='" + _description + '\'' +
-                ", _price=" + _price +
-                ", _stockQuantity=" + _stockQuantity +
+                "id=" + getId() +
+                ", _product_name='" + get_product_name() + '\'' +
+                ", _description='" + get_description() + '\'' +
+                ", _price=" + get_price() +
+                ", _stockQuantity=" + get_stockQuantity() +
                 '}';
     }
 }
